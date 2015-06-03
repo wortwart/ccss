@@ -1,0 +1,50 @@
+:root {
+	font-size: large;
+	font-family: "Verdana", "Arial", "Helvetica";
+	width: 800px;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 100;
+}
+
+h2 {
+	font-size: 1.25em;
+	font-weight: 900;
+}
+
+h3 {
+	font-size: 1.25em;
+	font-weight: 500;
+	font-style: italic;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul.striped {
+	width: 400px;
+	border: 1px solid #ddd;
+}
+.striped > li {
+	margin: 0.25em 0;
+	padding: 0.25em 0;
+}
+.striped > li:nth-of-type(even) {
+	border-top: 1px dotted gray;
+	border-bottom: 1px dotted gray;
+}
+
+footer {
+	margin-top: 3em;
+	padding-top: 1em;
+	border-top: 2px dotted black;
+	text-align: center;
+	font-size: small;
+}

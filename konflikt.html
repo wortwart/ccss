@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CCSS</title>
+	<link rel="stylesheet" href="./standard.css"/>
+	<script type="text/javascript" src="gss.min.js"></script>
+	<style type="text/gss">
+		#boxa1[width] == 200;
+		#boxa1[width] == #boxa2[width];
+		#boxa1[width] + #boxa2[width] <= 300;
+
+		#boxb1[width] == 200 !strong;
+		#boxb1[width] == #boxb2[width];
+		#boxb1[width] + #boxb2[width] <= 300;
+
+		#boxc1[width] == 200;
+		#boxc1[width] == #boxc2[width];
+		#boxc1[width] + #boxc2[width] <= 300 !weak;
+
+		div {
+			border: 1px solid red;
+			height: == 50;
+			&#boxa1, &#boxb1, &#boxc1 {
+				left: == 20;
+				background-color: lightgreen;
+			}
+			&#boxa2, &#boxb2, &#boxc2 {
+				left: == 250;
+				background-color: green;
+			}
+		}
+		pre {
+			left: == 500;
+			margin: 0;
+		}
+		(#boxa1...2, #a)[top] == 100;
+		(#boxb1...2, #b)[top] == (#boxa1...2, #a)[top] + 100;
+		(#boxc1...2, #c)[top] == (#boxb1...2, #b)[top] + 100;
+
+		footer[top] == ::window[height] - 80;
+	</style>
+</head>
+<body>
+	<h1>CCSS</h1>
+	<div id="boxa1"></div>
+	<div id="boxa2"></div>
+	<pre id="a">
+#boxa1[width] == 200;
+#boxa1[width] == #boxa2[width];
+#boxa1[width] + #boxa2[width] <= 300;
+	</pre>
+
+	<div id="boxb1"></div>
+	<div id="boxb2"></div>
+	<pre id="b">
+#boxb1[width] == 200 !strong;
+#boxb1[width] == #boxb2[width];
+#boxb1[width] + #boxb2[width] <= 300;
+	</pre>
+
+	<div id="boxc1"></div>
+	<div id="boxc2"></div>
+	<pre id="c">
+#boxc1[width] == 200;
+#boxc1[width] == #boxc2[width];
+#boxc1[width] + #boxc2[width] <= 300 !weak;
+	</pre>
+
+	<footer>
+		Herbert Braun &middot; <a href="/">Woerter.de</a>
+	</footer>
+	<script type="text/javascript">
+		window.engine = new GSS(document);
+		setTimeout(function() {
+			var els = document.querySelectorAll('div');
+			for (var i = 0; i < els.length; i++) {
+				var t = document.createTextNode(els[i].id + ': ' + els[i].clientWidth + '*' + els[i].clientHeight);
+				els[i].appendChild(t);
+			}
+		}, 500);
+	</script>
+</body>
+</html>
