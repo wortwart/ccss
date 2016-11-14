@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CCSS</title>
+	<link rel="stylesheet" href="./standard.css"/>
+	<script type="text/javascript" src="gss.min.js"></script>
+	<style type="text/gss">
+		div {
+			my-increment: == 40;
+			border: 1px solid red;
+			width: >= 160;
+			width: == :previous[width] + my-increment;
+			margin-top: >= 0;
+			margin-top: == :previous[margin-top] - my-increment / 2;
+			height: == width;
+			right: == :next[left] - 2;
+			b {
+				line-height: 1em;
+				background-color: gray;
+				text-align: center;
+				width: == ^width / 2;
+				cx: == ^cx;
+				top: == ^height / 4;
+				ht: == ^height / 2;
+				padding-top: == (ht - 1em) / 2 == padding-bottom;
+				height: <= ht - padding-top - padding-bottom;
+			}
+			i[padding-left] == 5;
+		}
+		footer[top] == ::window[height] - 150;
+	</style>
+</head>
+<body>
+	<h1>CCSS</h1>
+	<div id="box1"><b>Dieser</b></div>
+	<div id="box2"><b>Text</b></div>
+	<div id="box3"><b>ist</b></div>
+	<div id="box4"><b>mittig<i>!</i></b></div>
+	<footer>
+		<ul>
+			<li><a href="komplex.html">Komplexeres Beispiel</a></li>
+			<li><a href="konflikt.html">Constraints-Konflikt</a></li>
+		</ul>
+		<p>Herbert Braun &middot; <a href="/">Woerter.de</a></p>
+	</footer>
+	<script type="text/javascript">
+		window.engine = new GSS(document);
+		setTimeout(function() {
+			var els = document.querySelectorAll('div');
+			for (var i = 0; i < els.length; i++) {
+				var t = document.createTextNode(els[i].id + ': ' + els[i].clientWidth + '*' + els[i].clientHeight);
+				els[i].appendChild(t);
+			}
+		}, 500);
+	</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CCSS</title>
+	<link rel="stylesheet" href="./standard.css"/>
+	<script type="text/javascript" src="gss.min.js"></script>
+	<style type="text/gss">
+		@if ::window[width] > 800 {
+			font-size: == 1.2em;
+			bordersize == 1;
+		} @else {
+			font-size: == 1em;
+			bordersize == 2;
+		}
+		body div {
+			text-align: left;
+			font-size: == 25;
+		}
+		div {
+			border: 1px solid red;
+			text-align: center;
+		}
+		div:not(:first-of-type) {
+			font-size == &:previous + 5;
+		}
+		div[custom-property] == div[font-size] * 3;
+		"area1...4" {
+			width: == ::window[width] / 3;
+			height: == ::window[height] / 3;
+		}
+		"area1", "area3" {
+			left: == 0;
+		}
+		"area1...2" {
+			top: == 0;
+			right: == &:next[left] - 2 * bordersize;
+		}
+		"area3...4" {
+			top: == "area1"[height] + 2 * bordersize;
+			right: == &:next[left] - 2 * bordersize;
+		}
+		#box1[left] == "area1"[left];
+		#box1[bottom-right] == "area1"[bottom-right];
+		#box2[left] == "area2"[left];
+		#box2[bottom-right] == "area2"[bottom-right];
+		#box3[top] == "area3"[top];
+		#box3[bottom-right] == "area3"[bottom-right];
+		#box4 {
+			top: == "area4"[top];
+			left: == "area4"[left];
+			bottom-right: == "area4"[bottom-right];
+			#innen {
+				width: == ^width / 2;
+				height: == ^height / 2;
+				background-color: lightgray;
+				margin: >= 10;
+			}
+		}
+		body > p {
+			margin: 0;
+			background-color: orange;
+			height: 25px;
+		}
+		(body > p)[width] == div[width] / 2;
+		(body > p)[top] == #box1...4[bottom] - 24;
+		(body > p)[right] == #box1...4[right] + bordersize;
+		(body > p:last)[top] == footer[top] - 24;
+		(body > p:last)[right] == #box3[right] + 2 * bordersize;
+
+		(button !> section)[width] == #box1[width] + 2 * bordersize !required;
+		(button !> section)[left] == (button !> section)[width];
+		button !> section {
+			height: == &width / 4;
+			top: == "area3"[bottom] + bordersize;
+			button {
+				width: == 5em;
+				height: == &width / 3;
+				cy: == ^cy;
+			}
+			innergap == 1em;
+			outergap == 1.5 * innergap;
+			@h |-(#b1)-(#b2)~(#b3)-(#b4)-(#b5)-| gap(innergap) outer-gap(outergap);
+		}
+		section {background-color: red;}
+		footer[top] == ::window[height] - 150;
+		h1 {
+			text-align: right;
+			font-size: 3em;
+			font-style: italic;
+			width: == ::window[width] - 40;
+		}
+	</style>
+</head>
+<body>
+	<h1>CCSS</h1>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<div id="box3"></div>
+	<div id="box4"><div id="innen"></div></div>
+	<p>eins</p>
+	<p>zwei</p>
+	<p>drei</p>
+	<p>vier</p>
+	<p>fünf</p>
+	<section id="buttonbar">
+		<button id="b1">Button 1</button>
+		<button id="b2">Button 2</button>
+		<button id="b3">Button 3</button>
+		<button id="b5">Button 5</button>
+		<button id="b4">Button 4</button>
+	</section>
+	<footer>
+		<ul>
+			<li><a href="./">Einfaches Beispiel</a></li>
+			<li><a href="konflikt.html">Constraints-Konflikt</a></li>
+		</ul>
+		<p>Herbert Braun &middot; <a href="/">Woerter.de</a></p>
+	</footer>
+	<script type="text/javascript">
+		window.engine = new GSS(document);
+		setTimeout(function() {
+			var els = document.querySelectorAll('div');
+			for (var i = 0; i < els.length; i++) {
+				var t = document.createTextNode(els[i].id + ': ' + els[i].clientWidth + '*' + els[i].clientHeight);
+				els[i].appendChild(t);
+			}
+		}, 500);
+	</script>
+</body>
+</html>
